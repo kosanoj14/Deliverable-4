@@ -18,38 +18,29 @@ class Temperature:
     def to_celsius(self) -> float:
         """Converts kelvin or farenheit to celsius"""
         if self._unit == "K":
-            self._temp = self._temp - 273.15
-            self._unit = "C"
+            return self._temp - 273.15
         elif self._unit == "F":
-            self._temp = (self._temp - 32) * (5/9)
-            self._unit = "C"
+            return (self._temp - 32) * (5/9)
         else:
-            pass
-        return self._temp
+            return self._temp
 
     def to_fahrenheit(self) -> float:
         """Converts celsius or kelvin to fahrenheit"""
         if self._unit == "C":
-            self._temp = self._temp * (9/5) + 32
-            self._unit = "F"
+            return self._temp * (9/5) + 32
         elif self._unit == "K":
-            self._temp = (self._temp - 273.15) * (9/5) + 32
-            self._unit = "F"
+            return (self._temp - 273.15) * (9/5) + 32
         else:
-            pass
-        return self._temp
+            return self._temp
 
     def to_kelvin(self) -> float:
         """Converts celsius or fahrenheit to kelvin"""
         if self._unit == "C":
-            self._temp = self._temp + 273.15
-            self._unit = "K"
+            return self._temp + 273.15
         elif self._unit == "F":
-            self._temp = (self._temp - 32) * (5/9) + 273.15
-            self._unit = "K"
+            return (self._temp - 32) * (5/9) + 273.15
         else:
-            pass
-        return self._temp
+            return self._temp
 
     def convert_to(self, target_unit: str) -> object:
         """Converts the temperature to a new unit"""
@@ -64,11 +55,11 @@ class Temperature:
 
     def __repr__(self) -> str:
         """returns an unambiguous representation of the temperature"""
-        return f"Temperature({round(self._temp, 2)}, '{self._unit}')"
+        return f"Temperature({self._temp:.2f}, '{self._unit}')"
 
     def __str__(self) -> str:
         """returns a human readable representation of the temperature"""
-        return f"{round(self._temp, 2)} °{(self._unit)}"
+        return f"{self._temp:.2f} °{(self._unit)}"
 
     """makes temp and unit a property, that is read-only"""
     @property
@@ -82,7 +73,7 @@ class Temperature:
     def __eq__(self, other: object) -> bool:
         """checks if two temperatures are equal"""
         if not isinstance(other, Temperature):
-            return NotImplemented("can not compare a non temperature object to a temperature object")
+            return NotImplemented
         return (
             math.isclose(self.to_kelvin(), other.to_kelvin(), abs_tol=self.tol)
         )
@@ -90,7 +81,7 @@ class Temperature:
     def __ne__(self, other: object) -> bool:
         """checks if two temperatures are not equal"""
         if not isinstance(other, Temperature):
-            return NotImplemented("can not compare a non temperature object to a temperature object")
+            return NotImplemented
         return not (
             math.isclose(self.to_kelvin(), other.to_kelvin(), abs_tol=self.tol)
         )
@@ -98,7 +89,7 @@ class Temperature:
     def __lt__(self, other: object) -> bool:
         """checks if one temperature is less than another"""
         if not isinstance(other, Temperature):
-            return NotImplemented("can not compare a non temperature object to a temperature object")
+            return NotImplemented
         k1 = self.to_kelvin()
         k2 = other.to_kelvin()
         return not math.isclose(k1, k2, abs_tol=self.tol) and k1 < k2
@@ -106,7 +97,7 @@ class Temperature:
     def __le__(self, other: object) -> bool:
         """checks if one temperature is less or equal to another"""
         if not isinstance(other, Temperature):
-            return NotImplemented("can not compare a non temperature object to a temperature object")
+            return NotImplemented
         k1 = self.to_kelvin()
         k2 = other.to_kelvin()
         return math.isclose(k1, k2, abs_tol=self.tol) or k1 < k2
@@ -114,7 +105,7 @@ class Temperature:
     def __gt__(self, other: object) -> bool:
         """checks if one temperature is greater than another"""
         if not isinstance(other, Temperature):
-            return NotImplemented("can not compare a non temperature object to a temperature object")
+            return NotImplemented
         k1 = self.to_kelvin()
         k2 = other.to_kelvin()
         return not math.isclose(k1, k2, abs_tol=self.tol) and k1 > k2
@@ -122,7 +113,7 @@ class Temperature:
     def __ge__(self, other: object) -> bool:
         """checks if one temperature is greater or equal to another"""
         if not isinstance(other, Temperature):
-            return NotImplemented("can not compare a non temperature object to a temperature object")
+            return NotImplemented
         k1 = self.to_kelvin()
         k2 = other.to_kelvin()
         return math.isclose(k1, k2, abs_tol=self.tol) or k1 > k2
