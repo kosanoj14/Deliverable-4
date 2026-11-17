@@ -44,14 +44,17 @@ class Temperature:
 
     def convert_to(self, target_unit: str) -> object:
         """Converts the temperature to a new unit"""
-        if target_unit not in ("C","K","F"):
+        target_unit = target_unit.upper()
+
+        if target_unit not in ("C", "K", "F"):
             raise ValueError("You must use either C, K or F as your unit")
-        elif target_unit == "C":
-            return Temperature(self.to_celsius(),"C")
-        elif target_unit == "F":
-            return Temperature(self.to_fahrenheit(),"F")
-        elif target_unit == "K":
-            return Temperature(self.to_kelvin(),"K")
+        if target_unit == "C":
+            return Temperature(self.to_celsius(), "C")
+        if target_unit == "F":
+            return Temperature(self.to_fahrenheit(), "F")
+        if target_unit == "K":
+            return Temperature(self.to_kelvin(), "K")
+
 
     def __repr__(self) -> str:
         """returns an unambiguous representation of the temperature"""
@@ -117,11 +120,3 @@ class Temperature:
         k1 = self.to_kelvin()
         k2 = other.to_kelvin()
         return math.isclose(k1, k2, abs_tol=self.tol) or k1 > k2
-
-
-
-
-
-
-
-
