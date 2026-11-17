@@ -10,7 +10,7 @@ class Temperature:
         """A checker that sees if the unit is C, K or F"""
         if self._unit not in ("C","K","F"):
             raise ValueError("You must use either C, K or F as your unit")
-
+        """Checks if the temperature is below absolute zero"""
         if self.to_kelvin() < 0:
             raise ValueError("Temperature can not be below absolute zero")
 
@@ -55,6 +55,10 @@ class Temperature:
         elif target_unit == "K":
             return self.to_kelvin()
 
+    def __repr__(self) -> str:
+        """returns an unambiguous representation"""
+        return f"Temperature({self._temp}, {self._unit})"
+
 
 
     @property
@@ -68,7 +72,8 @@ class Temperature:
 
 temp = Temperature(100, "F")
 print(temp.to_celsius())
-print(temp.convert_to("F"))
+print(temp.convert_to("C"))
+print(temp.__repr__())
 
 
 
