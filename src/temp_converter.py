@@ -12,7 +12,7 @@ class Temperature:
         if self._unit not in ("C","K","F"):
             raise ValueError("You must use either C, K or F as your unit in uppercase")
         """Checks if the temperature is below absolute zero"""
-        if self.to_kelvin() < 0:
+        if self.to_kelvin() + self.tol < 0:
             raise ValueError("Temperature can not be below absolute zero")
 
     def to_celsius(self) -> float:
