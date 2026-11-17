@@ -51,20 +51,20 @@ class Temperature:
             pass
         return self._temp
 
-    def convert_to(self, target_unit: str) -> float:
+    def convert_to(self, target_unit: str) -> object:
         """Converts the temperature to a new unit"""
         if target_unit not in ("C","K","F"):
             raise ValueError("You must use either C, K or F as your unit")
         elif target_unit == "C":
-            return self.to_celsius()
+            return Temperature(self.to_celsius(),"C")
         elif target_unit == "F":
-            return self.to_fahrenheit()
+            return Temperature(self.to_fahrenheit(),"F")
         elif target_unit == "K":
-            return self.to_kelvin()
+            return Temperature(self.to_kelvin(),"K")
 
     def __repr__(self) -> str:
         """returns an unambiguous representation of the temperature"""
-        return f"Temperature({round(self._temp, 2)}, {self._unit})"
+        return f"Temperature({round(self._temp, 2)}, '{self._unit}')"
 
     def __str__(self) -> str:
         """returns a human readable representation of the temperature"""
