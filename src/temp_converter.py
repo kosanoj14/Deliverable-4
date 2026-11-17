@@ -1,11 +1,11 @@
 
 class Temperature:
-    """Converts different temperature types"""
+    """Converts a temperature in one unit to one in another unit"""
     def __init__(self, temp: int | float, unit: str) -> None:
         """takes in a temperature and its unit"""
         self._temp = temp
         self._unit = unit
-        tolerance = 1e-9
+        tol = 1e-9
 
         """A checker that sees if the unit is C, K or F"""
         if self._unit not in ("C","K","F"):
@@ -69,8 +69,16 @@ class Temperature:
         """returns a human readable representation of the temperature"""
         return f"{round(self._temp, 2)} °{(self._unit)}"
 
+    def test(self, target: object) -> str | bool:
+        """compares 2 different temperatures"""
+        if not isinstance(target, Temperature):
+            return NotImplemented("can not compare a non temperature object to a temperature object")
+        elif self.to_kelvin()
+        
+        
 
 
+    """makes temp and unit a property, that is read-only"""
     @property
     def temp(self) -> float:
         return self._temp
