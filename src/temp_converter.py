@@ -17,32 +17,38 @@ class Temperature:
     def to_celsius(self) -> float:
         """Converts kelvin or farenheit to celsius"""
         if self._unit == "K":
-            value = self._temp - 273.15
+            self._temp = self._temp - 273.15
+            self._unit = "C"
         elif self._unit == "F":
-            value = (self._temp - 32) * (5/9)
+            self._temp = (self._temp - 32) * (5/9)
+            self._unit = "C"
         else:
-            value = self._temp
-        return value
+            pass
+        return self._temp
 
     def to_fahrenheit(self) -> float:
         """Converts celsius or kelvin to fahrenheit"""
         if self._unit == "C":
-            value = self._temp * (9/5) + 32
+            self._temp = self._temp * (9/5) + 32
+            self._unit = "F"
         elif self._unit == "K":
-            value = (self._temp - 273.15) * (9/5) + 32
+            self._temp = (self._temp - 273.15) * (9/5) + 32
+            self._unit = "F"
         else:
-            value = self._temp
-        return value
+            pass
+        return self._temp
 
     def to_kelvin(self) -> float:
         """Converts celsius or fahrenheit to kelvin"""
         if self._unit == "C":
-            value = self._temp + 273.15
+            self._temp = self._temp + 273.15
+            self._unit = "K"
         elif self._unit == "F":
-            value = (self._temp - 32) * (5/9) + 273.15
+            self._temp = (self._temp - 32) * (5/9) + 273.15
+            self._unit = "K"
         else:
-            value = self._temp
-        return value
+            pass
+        return self._temp
 
     def convert_to(self, target_unit: str) -> float:
         """Converts the temperature to a new unit"""
@@ -56,8 +62,12 @@ class Temperature:
             return self.to_kelvin()
 
     def __repr__(self) -> str:
-        """returns an unambiguous representation"""
-        return f"Temperature({self._temp}, {self._unit})"
+        """returns an unambiguous representation of the temperature"""
+        return f"Temperature({round(self._temp, 2)}, {self._unit})"
+
+    def __str__(self) -> str:
+        """returns a human readable representation of the temperature"""
+        return f"{round(self._temp, 2)} °{(self._unit)}"
 
 
 
@@ -72,8 +82,8 @@ class Temperature:
 
 temp = Temperature(100, "F")
 print(temp.to_celsius())
-print(temp.convert_to("C"))
-print(temp.__repr__())
+print(temp.convert_to("F"))
+print(temp.__str__())
 
 
 
