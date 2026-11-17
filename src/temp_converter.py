@@ -9,7 +9,7 @@ class Temperature:
 
         """A checker that sees if the unit is C, K or F"""
         if self._unit not in ("C","K","F"):
-            raise ValueError("You must use either C, K or F as your unit")
+            raise ValueError("You must use either C, K or F as your unit in uppercase")
         """Checks if the temperature is below absolute zero"""
         if self.to_kelvin() < 0:
             raise ValueError("Temperature can not be below absolute zero")
@@ -69,14 +69,15 @@ class Temperature:
         """returns a human readable representation of the temperature"""
         return f"{round(self._temp, 2)} °{(self._unit)}"
 
+
     def test(self, target: object) -> str | bool:
         """compares 2 different temperatures"""
         if not isinstance(target, Temperature):
             return NotImplemented("can not compare a non temperature object to a temperature object")
-        elif self.to_kelvin()
+        elif self.to_kelvin():
+            pass
         
         
-
 
     """makes temp and unit a property, that is read-only"""
     @property
@@ -89,8 +90,8 @@ class Temperature:
 
 
 temp = Temperature(100, "F")
-print(temp.to_celsius())
-print(temp.convert_to("F"))
+#print(temp.to_celsius())
+print(temp.convert_to("C"))
 print(temp.__str__())
 
 
