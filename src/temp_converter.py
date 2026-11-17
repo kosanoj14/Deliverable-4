@@ -129,17 +129,6 @@ class Temperature:
 
 
 
-t1 = Temperature(0, "C")
-t2 = Temperature(32, "F")
-
-print(t1.__eq__(t2))
-print(t1.__ne__(t2))
-print(t1.__lt__(t2))
-print(t1.__le__(t2))
-print(t1.__gt__(t2))
-print(t1.__ge__(t2))
-
-
 
 
 
