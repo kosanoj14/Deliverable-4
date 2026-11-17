@@ -4,8 +4,8 @@ class Temperature:
     """Converts a temperature in one unit to one in another unit"""
     def __init__(self, temp: int | float, unit: str = "C") -> None:
         """takes in a temperature and its unit"""
-        self._temp = temp
-        self._unit = unit
+        self._temp = float(temp)
+        self._unit = unit.upper()
         self.tol = 1e-9
 
         """A checker that sees if the unit is C, K or F"""
