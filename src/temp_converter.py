@@ -7,6 +7,10 @@ class Temperature:
         self._unit = unit
         tolerance = 1e-9
 
+        """A checker that sees if the unit is C, K or F"""
+        if self._unit not in ("C","K","F"):
+                    raise ValueError("You must use either C, K or F as your unit")
+
     def to_celsius(self) -> float:
         """Converts kelvin or farenheit to celsius"""
 
@@ -23,3 +27,7 @@ class Temperature:
     @property
     def unit(self) -> str:
         return self._unit
+
+
+temp = Temperature(100, "K")
+
